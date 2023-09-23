@@ -20,9 +20,10 @@ typedef struct
 } tache;
 
 int taille = 0;
+int dernierID=200;
 
 void ajoutertache(tache m[])
-{
+{ 
     printf("Entrez le titre de la tache : ");
     scanf(" %[^\n]", m[taille].titre);
 
@@ -34,10 +35,28 @@ void ajoutertache(tache m[])
     printf("sous forme (JJ/mm/annee) : ");
     scanf("%d/%d/%d", &m[taille].deadline.jour, &m[taille].deadline.mois, &m[taille].deadline.annee);
 
-    printf("Entrez le statut de la tache (a realiser/en cours de realisation/finalisee): ");
-    scanf(" %[^\n]", m[taille].status);
-
-    if (taille == 0)
+    printf("Entrez le statut de la tache (a realiser/en cours de realisation/finalisee)\n ");
+    printf("1 - a realiser \n");
+    printf("2 - en cours de  realisation \n");
+    printf("3 - finalisee\n");
+    printf("entrer votre choix  :");
+    int choix;
+    scanf(" %d", &choix);
+switch (choix)
+{
+case 1:
+  strcpy(m[taille].status,"a realiser ");
+    break;
+    case 2:
+     strcpy(m[taille].status,"en cours de realisation");
+    break;
+     case 3:
+       strcpy(m[taille].status,"finalisee");
+     break;
+default:
+    break;
+}
+   /* if (taille == 0)
     {
         m[taille].identifiant = 200;
         printf("\n votre ID est : %d\n", m[taille].identifiant);
@@ -46,7 +65,10 @@ void ajoutertache(tache m[])
     {
         m[taille].identifiant = m[taille - 1].identifiant + 1;
         printf("votre ID est : %d\n", m[taille].identifiant);
-    }
+    }*/
+    m[taille].identifiant = dernierID++; 
+
+    printf("Votre ID est : %d\n", m[taille].identifiant);
 
     taille++;
 }
@@ -415,7 +437,7 @@ int main()
             printf("\t\t\t\t\t2. Modifier le statut d une tâche. \n");
             printf("\t\t\t\t\t3. Modifier le deadline d une tâche.\n");
             printf("\t\t\t\t\t4. retour au menu principal \n");
-            printf("Enter your choice: ");
+            
             printf("Enter your choice: ");
             scanf("%d",&options2);
             switch (options2)
@@ -438,7 +460,7 @@ int main()
             break;
         case 6:
 
-{
+          {
 
 
             printf("\t\t\t\t\t1. Rechercher une tâche par son Identifiant \n");
@@ -450,8 +472,10 @@ int main()
             {
             case 1:
             rechercheparid(M);
+            break;
             case 2:
-            recherchepartitre(M);
+                   recherchepartitre(M);
+                   break;
             case 3:
             goto start;
                 break;
