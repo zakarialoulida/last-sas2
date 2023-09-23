@@ -166,10 +166,16 @@ void dead_linebetween3day(tache taches[])
         {
             printf("id : %d | Titre : %s |  est : Aujourdui\n", taches[i].identifiant, taches[i].titre);
         }
-        else if (tab[i] <= 3)
+        else if (tab[i] <= 3 && tab[i]>0 )
         {
-            printf("id : %d | Titre : %s | Deadline ds : %d jours\n", taches[i].identifiant, taches[i].titre, tab[i]);
+            printf("id : %d | Titre : %s       | Deadline ds : %d         jours\n", taches[i].identifiant, taches[i].titre, tab[i]);
         }
+     /*   else if( tab[i]<0){
+            printf("id : %d | Titre : %s | Deadlinejoursdeja epuisee\n", taches[i].identifiant, taches[i].titre);
+        }else{
+
+        }*/
+
     }
 }
 int supprimertacheparID(tache m[], int *taille)
@@ -353,7 +359,7 @@ void deadlinerest(tache taches[])
     {
         int jours = taches[i].deadline.annee * 365 + taches[i].deadline.mois * 30 + taches[i].deadline.jour;
         int delai_jour = jours - (Year * 365 + Month * 30 + Day);
-
+        if (delai_jour>=0){
         printf("Identifiant : %d\n", taches[i].identifiant);
         printf("Titre de la tâche : %s\n", taches[i].titre);
         printf("Description : %s\n", taches[i].description);
@@ -361,6 +367,13 @@ void deadlinerest(tache taches[])
         printf("Statut : %s\n", taches[i].status);
         printf("Nombre de jours restants jusqu'au délai : %d\n", delai_jour);
         printf("-----------------------------\n");
+        }
+        else
+        {
+        break;
+
+        }
+        
     }
 }
 
