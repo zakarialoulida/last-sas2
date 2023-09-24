@@ -223,7 +223,7 @@ void rechercheparid(tache m[])
             break;
         }
     }
-     printf("tache introuvable");
+     printf("tache introuvable\n");
 }
 void recherchepartitre(tache m[])
 {
@@ -238,7 +238,7 @@ void recherchepartitre(tache m[])
             break;
         }
     }
-     printf("tache introuvable");
+     printf("tache introuvable\n");
 }
 
 void modifierdescrip(tache m[])
