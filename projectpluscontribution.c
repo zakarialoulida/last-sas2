@@ -16,6 +16,7 @@ typedef struct
     char titre[100];
     char description[800];
     date deadline;
+    date dateCreation;
     char status[100];
 } tache;
 
@@ -56,16 +57,11 @@ case 1:
 default:
     break;
 }
-   /* if (taille == 0)
-    {
-        m[taille].identifiant = 200;
-        printf("\n votre ID est : %d\n", m[taille].identifiant);
-    }
-    else
-    {
-        m[taille].identifiant = m[taille - 1].identifiant + 1;
-        printf("votre ID est : %d\n", m[taille].identifiant);
-    }*/
+   time_t creationTime = time(NULL);
+    struct tm *creationDate = localtime(&creationTime);
+    m[taille].dateCreation.jour = creationDate->tm_mday;
+    m[taille].dateCreation.mois = creationDate->tm_mon + 1;
+    m[taille].dateCreation.annee = creationDate->tm_year + 1900;
     m[taille].identifiant = dernierID++; 
 
     printf("Votre ID est : %d\n", m[taille].identifiant);
@@ -107,7 +103,9 @@ void affich(tache m)
     printf("Titre de la tache : %s", m.titre);
     printf("Description : %s", m.description);
     printf("Deadline : %d/%d/%d\n", m.deadline.jour, m.deadline.mois, m.deadline.annee);
+    printf("Date de Creation est: %d/%d/%d\n", m.dateCreation.jour, m.dateCreation.mois, m.dateCreation.annee);
     printf("Statut : %s\n", m.status);
+
     printf("-----------------------------\n");
 }
 
@@ -119,6 +117,7 @@ void affichplus(tache m[], int n)
         printf("Titre de la tache : %s\n", m[i].titre);
         printf("Description : %s\n", m[i].description);
         printf("Deadline : %d/%d/%d\n", m[i].deadline.jour, m[i].deadline.mois, m[i].deadline.annee);
+        printf("Date de Creation est: %d/%d/%d\n", m[i].dateCreation.jour, m[i].dateCreation.mois, m[i].dateCreation.annee);
         printf("Statut : %s\n", m[i].status);
         printf("-----------------------------\n");
     }
