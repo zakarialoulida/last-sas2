@@ -97,11 +97,29 @@ void affiche_trialphabet(tache m[], int n)
         m[j + 1] = cmd;
     }
 }
+/*
+void affiche_trialphabet(tache m[], int n)
+{
+    for (int i = 0; i < n - 1; i++)
+    {
+        for (int j = 0; j < n - i - 1; j++)
+        {
+            if (strcmp(m[j].titre, m[j + 1].titre) > 0)
+            {
+                // Échangez les tâches si elles sont dans le mauvais ordre
+                tache temp = m[j];
+                m[j] = m[j + 1];
+                m[j + 1] = temp;
+            }
+        }
+    }
+}*/
+
 void affich(tache m)
 {
     printf("Identifiant : %d\n", m.identifiant);
-    printf("Titre de la tache : %s", m.titre);
-    printf("Description : %s", m.description);
+    printf("Titre de la tache : %s\n", m.titre);
+    printf("Description : %s\n", m.description);
     printf("Deadline : %d/%d/%d\n", m.deadline.jour, m.deadline.mois, m.deadline.annee);
     printf("Date de Creation est: %d/%d/%d\n", m.dateCreation.jour, m.dateCreation.mois, m.dateCreation.annee);
     printf("Statut : %s\n", m.status);
@@ -212,7 +230,7 @@ int supprimertacheparID(tache m[], int *taille)
 
 void rechercheparid(tache m[])
 {int identif;
-    printf("entrer ID a modifier");
+    printf("entrer ID de la tache ");
     scanf("%d", &identif);
     for (int i = 0; i < taille; i++)
     {
@@ -227,7 +245,7 @@ void rechercheparid(tache m[])
 void recherchepartitre(tache m[])
 {
     char rechtitre[100];
-    printf("entrer le titre a rechercher :");
+    printf("entrer le titre de la tache a chercher :");
     scanf(" %[^\n]", rechtitre);
     for (int i = 0; i < taille; i++)
     {
@@ -370,15 +388,14 @@ void deadlinerest(tache taches[])
         printf("Statut : %s\n", taches[i].status);
         printf("Nombre de jours restants jusqu'au delai : %d\n", delai_jour);
         printf("-----------------------------\n");
-        }
-        else
-        {
-        break;
+        }}
+        
 
-        }
+
+        
         
     }
-}
+
 
 int main()
 {
@@ -482,7 +499,7 @@ int main()
             printf("\t\t\t\t\t1. Rechercher une tache par son Identifiant \n");
             printf("\t\t\t\t\t2. Rechercher une tache par son Titre \n");
             printf("\t\t\t\t\t3. Retour au menu principal \n");
-            printf("Enter your choice: ");
+            printf("Entrer votre choix: ");
             scanf("%d",&options3);
             switch (options3)
             {
@@ -506,7 +523,7 @@ int main()
             printf("\t\t\t\t\t2. Afficher le nombre de taches completes et incompletes. \n");
             printf("\t\t\t\t\t3. Afficher le nombre de jours restants jusqu'au delai de chaque tache. \n");
             printf("\t\t\t\t\t4. Retour au menu principal \n");
-            printf("Enter your choice: ");
+            printf("Entrer votre choix: ");
             scanf("%d",&options4);
             switch (options4)
             {
